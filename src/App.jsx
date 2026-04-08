@@ -6,6 +6,7 @@ import ChartOfAccountsPage   from "@/components/ChartOfAccountsPage";
 import InvoicesPage           from "@/components/InvoicesPage";
 import NewInvoicePage         from "@/components/NewInvoicePage";
 import TrialBalancePage       from "@/components/TrialBalancePage";
+import SalesTaxReportPage from "@/components/SalesTaxReportPage";
 import {
   NewRepeatingInvoicePage,
   NewCreditNotePage,
@@ -292,6 +293,7 @@ export default function App() {
       case "export-invoices":        return <ExportInvoicesPage     onNavigate={navigate} />;
       case "invoice-reminders":      return <InvoiceRemindersPage   onNavigate={navigate} />;
       case "trial-balance":          return <TrialBalancePage       onNavigate={navigate} />;
+      case "sales-tax-report":       return <SalesTaxReportPage     onNavigate={navigate} />;
       default:                       return <PlaceholderPage page={currentPage} />;
     }
   };
