@@ -177,7 +177,7 @@ export default function NewInvoicePage({ onNavigate }) {
       )}
 
       {/* Nav */}
-      <div style={{ background:"#1a6496",height:48,display:"flex",alignItems:"center",padding:"0 16px" }}>
+      {/* <div style={{ background:"#1a6496",height:48,display:"flex",alignItems:"center",padding:"0 16px" }}>
         <span style={{ color:"#fff",fontWeight:800,fontSize:18,letterSpacing:-0.5,marginRight:20 }}>xero</span>
         {["Home","Sales","Purchases","Reporting","Payroll","Accounting","Tax","Contacts","Projects"].map(item=>(
           <button key={item} style={{ background:item==="Sales"?"rgba(255,255,255,.18)":"none",border:"none",color:"#fff",fontSize:13,fontWeight:item==="Sales"?700:400,padding:"0 12px",height:48,cursor:"pointer" }}>
@@ -189,7 +189,7 @@ export default function NewInvoicePage({ onNavigate }) {
           <button key={k} style={{background:"none",border:"none",color:"#fff",fontSize:16,cursor:"pointer",padding:"0 6px",opacity:.85}}>{i}</button>
         ))}
         <div style={{width:32,height:32,borderRadius:"50%",background:"#e91e63",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:12,fontWeight:700,marginLeft:4}}>MK</div>
-      </div>
+      </div> */}
 
       {/* Sub-header */}
       <div style={{ background:"#fff",borderBottom:"1px solid #e5e7eb",padding:"8px 20px 0" }}>

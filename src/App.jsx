@@ -7,14 +7,21 @@ import InvoicesPage           from "@/components/InvoicesPage";
 import NewInvoicePage         from "@/components/NewInvoicePage";
 import TrialBalancePage       from "@/components/TrialBalancePage";
 import SalesTaxReportPage from "@/components/SalesTaxReportPage";
-import {
-  NewRepeatingInvoicePage,
-  NewCreditNotePage,
-  SendStatementsPage,
-  ImportInvoicesPage,
-  ExportInvoicesPage,
-  InvoiceRemindersPage,
-} from "@/components/InvoiceSubPages";
+import ImportInvoicesPage from "@/components/ImportInvoicesPage";
+import InvoiceRemindersPage from "@/components/InvoiceRemindersPage";
+import NewCreditNotePage from "@/components/NewCreditNotePage";
+import NewRepeatingInvoicePage from "@/components/NewRepeatingInvoicePage";
+import StatementsPage from "@/components/StatementsPage";
+// import ExportInvoicesPage from "@/components/InvoiceSubPages";
+
+// import {
+//   NewRepeatingInvoicePage,
+//   NewCreditNotePage,
+//   SendStatementsPage,
+//   ImportInvoicesPage,
+//   ExportInvoicesPage,
+//   InvoiceRemindersPage,
+// } from "@/components/InvoiceSubPages";
 
 // ─── Nav menu definitions ────────────────────────────────────────────────────
 const NAV_MENUS = [
@@ -266,7 +273,7 @@ export default function App() {
   const activeMenuIndex = useMemo(() => {
     // Pages that belong to "Sales" group (including sub-pages)
     const salesPages = ["invoices","new-invoice","new-repeating-invoice","new-credit-note",
-      "send-statements","import-invoices","export-invoices","invoice-reminders",
+      "send-statements","import-invoices","export-invoices","invoice-reminders","statements",
       "sales-overview","online-payments","customers","products-services","quotes"];
     if (salesPages.includes(currentPage)) return 1;
 
@@ -286,14 +293,19 @@ export default function App() {
       case "chart-of-accounts":      return <ChartOfAccountsPage   onNavigate={navigate} />;
       case "invoices":               return <InvoicesPage           onNavigate={navigate} />;
       case "new-invoice":            return <NewInvoicePage         onNavigate={navigate} />;
-      case "new-repeating-invoice":  return <NewRepeatingInvoicePage onNavigate={navigate} />;
-      case "new-credit-note":        return <NewCreditNotePage      onNavigate={navigate} />;
-      case "send-statements":        return <SendStatementsPage     onNavigate={navigate} />;
-      case "import-invoices":        return <ImportInvoicesPage     onNavigate={navigate} />;
-      case "export-invoices":        return <ExportInvoicesPage     onNavigate={navigate} />;
-      case "invoice-reminders":      return <InvoiceRemindersPage   onNavigate={navigate} />;
+      // case "new-repeating-invoice":  return <NewRepeatingInvoicePage onNavigate={navigate} />;
+      // case "new-credit-note":        return <NewCreditNotePage      onNavigate={navigate} />;
+      // case "send-statements":        return <SendStatementsPage     onNavigate={navigate} />;
+      // case "import-invoices":        return <ImportInvoicesPage     onNavigate={navigate} />;
+      // case "export-invoices":        return <ExportInvoicesPage     onNavigate={navigate} />;
+      // case "invoice-reminders":      return <InvoiceRemindersPage   onNavigate={navigate} />;
       case "trial-balance":          return <TrialBalancePage       onNavigate={navigate} />;
       case "sales-tax-report":       return <SalesTaxReportPage     onNavigate={navigate} />;
+      case "import-invoices":       return <ImportInvoicesPage     onNavigate={navigate} />;
+      case "invoice-reminders":       return <InvoiceRemindersPage     onNavigate={navigate} />;
+      case "new-credit-note":       return <NewCreditNotePage     onNavigate={navigate} />;
+      case "new-repeating-invoice":       return <NewRepeatingInvoicePage    onNavigate={navigate} />;
+      case "statements":       return <StatementsPage     onNavigate={navigate} />;
       default:                       return <PlaceholderPage page={currentPage} />;
     }
   };

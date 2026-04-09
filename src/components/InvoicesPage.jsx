@@ -169,7 +169,13 @@ export default function InvoicesPage({ onNavigate }) {
             New Credit Note
           </Button>
 
-          <Button variant="outline" onClick={() => onNavigate("send-statements")}
+          {/* <Button variant="outline" onClick={() => onNavigate("send-statements")}
+            style={{ fontSize:13, fontWeight:700, height:32, padding:"0 12px", borderRadius:4, borderColor:"#bbb", color:"#444" }}
+            className="hover:bg-gray-50 inv-hide-mobile">
+            Send Statements
+          </Button> */}
+
+          <Button variant="outline" onClick={() => onNavigate("statements")}
             style={{ fontSize:13, fontWeight:700, height:32, padding:"0 12px", borderRadius:4, borderColor:"#bbb", color:"#444" }}
             className="hover:bg-gray-50 inv-hide-mobile">
             Send Statements
