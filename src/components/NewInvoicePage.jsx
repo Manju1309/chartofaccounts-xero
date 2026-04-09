@@ -1,4 +1,3 @@
-
 import { useState, useRef } from "react";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
@@ -52,6 +51,8 @@ const taxRateOf = label => (TAX_OPTIONS.find(t=>t.label===label)||{rate:0}).rate
 function CellSelect({ value, onChange, options, placeholder }) {
   return (
     <select value={value} onChange={e=>onChange(e.target.value)}
+    onFocus={e => e.target.style.border = "1px solid #1a6496"}
+  onBlur={e => e.target.style.border = "1px solid transparent"}
       style={{ width:"100%",height:28,border:"none",background:"transparent",fontSize:13,color:value?"#1a1a2e":"#9ca3af",cursor:"pointer",outline:"none",padding:"0 2px" }}>
       <option value="">{placeholder||"—"}</option>
       {options.map(o=><option key={o} value={o}>{o}</option>)}
@@ -156,7 +157,25 @@ export default function NewInvoicePage({ onNavigate }) {
   // styles
   const TH = { padding:"8px 10px",fontSize:12,fontWeight:600,color:"#374151",background:"#f9fafb",borderBottom:"1px solid #e5e7eb",borderRight:"1px solid #e5e7eb",whiteSpace:"nowrap",textAlign:"left",verticalAlign:"bottom" };
   const TD = { padding:"0 4px",borderBottom:"1px solid #f3f4f6",borderRight:"1px solid #f0f1f3",verticalAlign:"middle",height:44 };
-  const inp = { width:"100%",height:28,border:"none",background:"transparent",fontSize:13,color:"#1a1a2e",outline:"none",padding:"0 4px" };
+// const TD = {
+//   padding: "0",
+//   borderBottom: "1px solid #f3f4f6",
+//   borderRight: "1px solid #f0f1f3",
+//   verticalAlign: "middle",
+//   height: "auto"
+// };
+//   const inp = { width:"100%",height:28,border:"none",background:"transparent",fontSize:13,color:"#1a1a2e",outline:"none",padding:"0 4px" };
+const inp = {
+  width: "100%",
+  height: "100%",
+  border: "1px solid transparent",
+  background: "transparent",
+  fontSize: 13,
+  color: "#1a1a2e",
+  outline: "none",
+  padding: "4px 6px",
+  boxSizing: "border-box"
+};
   const fL  = { display:"block",fontSize:11,fontWeight:600,color:"#6b7280",marginBottom:4,textTransform:"uppercase",letterSpacing:.4 };
   const fI  = { width:"100%",height:32,border:"1px solid #d1d5db",borderRadius:4,fontSize:13,paddingLeft:28,paddingRight:8,outline:"none",color:"#374151",boxSizing:"border-box" };
   const sS  = { width:"100%",height:32,border:"1px solid #d1d5db",borderRadius:4,fontSize:13,padding:"0 28px 0 8px",outline:"none",color:"#374151",background:"#fff",appearance:"none",WebkitAppearance:"none",boxSizing:"border-box",
@@ -176,20 +195,6 @@ export default function NewInvoicePage({ onNavigate }) {
         </div>
       )}
 
-      {/* Nav */}
-      {/* <div style={{ background:"#1a6496",height:48,display:"flex",alignItems:"center",padding:"0 16px" }}>
-        <span style={{ color:"#fff",fontWeight:800,fontSize:18,letterSpacing:-0.5,marginRight:20 }}>xero</span>
-        {["Home","Sales","Purchases","Reporting","Payroll","Accounting","Tax","Contacts","Projects"].map(item=>(
-          <button key={item} style={{ background:item==="Sales"?"rgba(255,255,255,.18)":"none",border:"none",color:"#fff",fontSize:13,fontWeight:item==="Sales"?700:400,padding:"0 12px",height:48,cursor:"pointer" }}>
-            {item}{item==="Sales"&&<span style={{marginLeft:3,fontSize:10}}>▾</span>}
-          </button>
-        ))}
-        <div style={{flex:1}}/>
-        {["+","🔍","⭐","?","✉","🔔"].map((i,k)=>(
-          <button key={k} style={{background:"none",border:"none",color:"#fff",fontSize:16,cursor:"pointer",padding:"0 6px",opacity:.85}}>{i}</button>
-        ))}
-        <div style={{width:32,height:32,borderRadius:"50%",background:"#e91e63",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:12,fontWeight:700,marginLeft:4}}>MK</div>
-      </div> */}
 
       {/* Sub-header */}
       <div style={{ background:"#fff",borderBottom:"1px solid #e5e7eb",padding:"8px 20px 0" }}>
@@ -389,30 +394,95 @@ export default function NewInvoicePage({ onNavigate }) {
                       <span style={{color:"#c9cbd0",fontSize:16,letterSpacing:-1}}>⠿</span>
                     </td>
 
-                    <td style={TD}><input value={row.item} onChange={e=>upd(row.id,"item",e.target.value)} style={inp}/></td>
+                    <td style={TD}><input value={row.item} onChange={e=>upd(row.id,"item",e.target.value)}  style={inp} onFocus={e => e.target.style.border = "1px solid #1a6496"}
+  onBlur={e => e.target.style.border = "1px solid transparent"}/></td>
 
                     {vis("desc") && (
                       <td style={TD}>
                         <textarea value={row.desc} onChange={e=>upd(row.id,"desc",e.target.value)} rows={1}
-                          style={{...inp,resize:"none",overflow:"hidden",lineHeight:"20px",padding:"4px",borderRadius:3,height:"auto",minHeight:28}}
+                        //   style={{...inp,resize:"none",overflow:"hidden",lineHeight:"20px",padding:"4px",borderRadius:3,height:"auto",minHeight:28}}
+                        style={{
+    width: "100%",
+    height:"100%",
+    minHeight: 60,
+    border: "1px solid transparent",
+    outline: "none",
+    resize: "none",
+    fontSize: 13,
+    lineHeight: "20px",
+    padding: "6px",
+    boxSizing: "border-box",
+    overflow: "hidden",
+    marginBottom: "-3px",
+  }}
+                          onFocus={e => e.target.style.border = "1px solid #1a6496"}
+                          onBlur={e => e.target.style.border = "1px solid transparent"}
                           onInput={e=>{e.target.style.height="auto";e.target.style.height=e.target.scrollHeight+"px";}}/>
                       </td>
                     )}
 
-                    <td style={{...TD,textAlign:"right"}}>
+                    {/* <td style={{...TD,textAlign:"right"}}>
                       <input value={row.qty} onChange={e=>upd(row.id,"qty",e.target.value)} style={{...inp,textAlign:"right"}}/>
-                    </td>
-                    <td style={{...TD,textAlign:"right"}}>
+                    </td> */}
+                    <td
+  style={{ ...TD, textAlign: "right", cursor: "text" }}
+  onClick={(e) => {
+    const input = e.currentTarget.querySelector("input");
+    input?.focus();
+  }}
+>
+  <input
+    value={row.qty}
+    onChange={e => upd(row.id, "qty", e.target.value)}
+    style={{ ...inp, textAlign: "right", height: "100%" }}
+    onFocus={e => e.target.style.border = "1px solid #1a6496"}
+  onBlur={e => e.target.style.border = "1px solid transparent"}
+  />
+</td>
+                    {/* <td style={{...TD,textAlign:"right"}}>
                       <input value={row.price} onChange={e=>upd(row.id,"price",e.target.value)} style={{...inp,textAlign:"right"}}/>
-                    </td>
+                    </td> */}
+                    <td
+  style={{ ...TD, textAlign: "right", cursor: "text" }}
+  onClick={(e) => {
+    const input = e.currentTarget.querySelector("input");
+    input?.focus();
+  }}
+>
+  <input
+    value={row.price}
+    onChange={e => upd(row.id, "price", e.target.value)}
+    style={{ ...inp, textAlign: "right", height: "100%" }}
+    onFocus={e => e.target.style.border = "1px solid #1a6496"}
+  onBlur={e => e.target.style.border = "1px solid transparent"}
+  />
+</td>
 
                     {vis("disc") && (
-                      <td style={{...TD,textAlign:"right"}}>
-                        <input value={row.disc} onChange={e=>upd(row.id,"disc",e.target.value)} style={{...inp,textAlign:"right"}}/>
-                      </td>
+                    //   <td style={{...TD,textAlign:"right"}}>
+                    //     <input value={row.disc} onChange={e=>upd(row.id,"disc",e.target.value)} style={{...inp,textAlign:"right"}}/>
+                    //   </td>
+                    <td
+  style={{ ...TD, textAlign: "right", cursor: "text" }}
+  onClick={(e) => {
+    const input = e.currentTarget.querySelector("input");
+    input?.focus();
+  }}
+>
+  <input
+    value={row.disc}
+    onChange={e => upd(row.id, "disc", e.target.value)}
+    style={{ ...inp, textAlign: "right", height: "100%" }}
+    onFocus={e => e.target.style.border = "1px solid #1a6496"}
+  onBlur={e => e.target.style.border = "1px solid transparent"}
+  />
+</td>
                     )}
                     {vis("account") && (
-                      <td style={TD}><CellSelect value={row.account} onChange={v=>upd(row.id,"account",v)} options={ACCOUNTS}/></td>
+                      <td style={{...TD, cursor: "pointer"}}onClick={(e) => {
+    const select = e.currentTarget.querySelector("select");
+    select?.focus();
+  }}><CellSelect value={row.account} onChange={v=>upd(row.id,"account",v)} options={ACCOUNTS}/></td>
                     )}
                     {vis("taxRate") && (
                       <td style={TD}><CellSelect value={row.taxRate} onChange={v=>upd(row.id,"taxRate",v)} options={TAX_OPTIONS.map(t=>t.label)}/></td>
