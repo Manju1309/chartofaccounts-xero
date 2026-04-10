@@ -2,17 +2,27 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 
-import ChartOfAccountsPage   from "@/components/ChartOfAccountsPage";
+
 import InvoicesPage           from "@/components/InvoicesPage";
-import NewInvoicePage         from "@/components/NewInvoicePage";
-import TrialBalancePage       from "@/components/TrialBalancePage";
+
+//tabs inside invoices page
+import NewInvoicePage         from "@/components/Invoicetabs/CreateNewInvoicePage";
+import ImportInvoicesPage from "@/components/Invoicetabs/ImportInvoicesPage";
+import InvoiceRemindersPage from "@/components/Invoicetabs/InvoiceRemindersPage";
+import NewCreditNotePage from "@/components/Invoicetabs/NewCreditNotePage";
+import NewRepeatingInvoicePage from "@/components/Invoicetabs/NewRepeatingInvoicePage";
+
 import SalesTaxReportPage from "@/components/SalesTaxReportPage";
-import ImportInvoicesPage from "@/components/ImportInvoicesPage";
-import InvoiceRemindersPage from "@/components/InvoiceRemindersPage";
-import NewCreditNotePage from "@/components/NewCreditNotePage";
-import NewRepeatingInvoicePage from "@/components/NewRepeatingInvoicePage";
-import StatementsPage from "@/components/StatementsPage";
+
 // import ExportInvoicesPage from "@/components/InvoiceSubPages";
+import BillsPage              from "@/components/BillsPage";
+import {
+  NewBillPage,
+  NewRepeatingBillPage,
+  NewCreditNoteBillPage,
+  UploadBillPage,
+  ImportBillsCSVPage,
+} from "@/components/BillSubPages";
 
 // import {
 //   NewRepeatingInvoicePage,
@@ -290,22 +300,21 @@ export default function App() {
   // ─── Page renderer ──────────────────────────────────────────────────────────
   const renderPage = () => {
     switch (currentPage) {
-      case "chart-of-accounts":      return <ChartOfAccountsPage   onNavigate={navigate} />;
+      
       case "invoices":               return <InvoicesPage           onNavigate={navigate} />;
       case "new-invoice":            return <NewInvoicePage         onNavigate={navigate} />;
-      // case "new-repeating-invoice":  return <NewRepeatingInvoicePage onNavigate={navigate} />;
-      // case "new-credit-note":        return <NewCreditNotePage      onNavigate={navigate} />;
-      // case "send-statements":        return <SendStatementsPage     onNavigate={navigate} />;
-      // case "import-invoices":        return <ImportInvoicesPage     onNavigate={navigate} />;
-      // case "export-invoices":        return <ExportInvoicesPage     onNavigate={navigate} />;
-      // case "invoice-reminders":      return <InvoiceRemindersPage   onNavigate={navigate} />;
-      case "trial-balance":          return <TrialBalancePage       onNavigate={navigate} />;
       case "sales-tax-report":       return <SalesTaxReportPage     onNavigate={navigate} />;
       case "import-invoices":       return <ImportInvoicesPage     onNavigate={navigate} />;
       case "invoice-reminders":       return <InvoiceRemindersPage     onNavigate={navigate} />;
       case "new-credit-note":       return <NewCreditNotePage     onNavigate={navigate} />;
       case "new-repeating-invoice":       return <NewRepeatingInvoicePage    onNavigate={navigate} />;
-      case "statements":       return <StatementsPage     onNavigate={navigate} />;
+      case "bills":                  return <BillsPage              onNavigate={navigate} />;
+      case "new-bill":               return <NewBillPage            onNavigate={navigate} />;
+      case "new-repeating-bill":     return <NewRepeatingBillPage   onNavigate={navigate} />;
+      case "new-bill-credit-note":   return <NewCreditNoteBillPage  onNavigate={navigate} />;
+      case "upload-bill":            return <UploadBillPage         onNavigate={navigate} />;
+      case "import-bills-csv":       return <ImportBillsCSVPage     onNavigate={navigate} />;
+
       default:                       return <PlaceholderPage page={currentPage} />;
     }
   };
