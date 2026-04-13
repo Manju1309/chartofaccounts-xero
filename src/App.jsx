@@ -11,11 +11,11 @@ import ImportInvoicesPage from "@/components/Invoicetabs/ImportInvoicesPage";
 import InvoiceRemindersPage from "@/components/Invoicetabs/InvoiceRemindersPage";
 import NewCreditNotePage from "@/components/Invoicetabs/NewCreditNotePage";
 import NewRepeatingInvoicePage from "@/components/Invoicetabs/NewRepeatingInvoicePage";
-
+import BankReconciliationPage from "@/components/BankReconciliationPage";
 import SalesTaxReportPage from "@/components/SalesTaxReportPage";
 
 // import ExportInvoicesPage from "@/components/InvoiceSubPages";
-import BillsPage              from "@/components/BillsPage";
+import BillsPage  from "@/components/BillsPage";
 import {
   NewBillPage,
   NewRepeatingBillPage,
@@ -84,6 +84,7 @@ const NAV_MENUS = [
       { label: "Bank rules",           page: "bank-rules" },
       { label: "Accounting settings",  page: "accounting-settings" },
       { label: "Fixed Assets",         page: "fixed-assets" },
+      { label: "Bank Reconciliation",         page: "bank-reconciliation" },
     ],
   },
   {
@@ -314,7 +315,7 @@ export default function App() {
       case "new-bill-credit-note":   return <NewCreditNoteBillPage  onNavigate={navigate} />;
       case "upload-bill":            return <UploadBillPage         onNavigate={navigate} />;
       case "import-bills-csv":       return <ImportBillsCSVPage     onNavigate={navigate} />;
-
+      case "bank-reconciliation":       return <BankReconciliationPage     onNavigate={navigate} />;
       default:                       return <PlaceholderPage page={currentPage} />;
     }
   };
